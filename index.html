@@ -8,26 +8,26 @@
   <script type="text/javascript" src='js/angular.min.js'></script>
   <script type="text/javascript" src='js/app.js'></script>
 </head>
-<body>
-  <div ng-app='todoApp' class="container">
-	<div class="row">
+<body ng-app='todoApp'>
+  <div  class="container">
+	<div class="row" ng-controller='ListCtrl'>
    		<div class="col-md-8 col-md-offset-2">
    			<div class="wrapper"><h1>ToDoList</h1></div>
     		<div class="panel panel-default">
         		<div class="panel-heading">
         			<div class="input-group">
       					<span class="input-group-btn">
-        					<button class="btn btn-default" id="sub" type="button">Add</button>
+        					<button class="btn btn-default" id="sub" type="button" ng-click="addTask()">Add</button>
       					</span>
-      					<input type="text" class="form-control" id="bisiness" placeholder="Input...">
+      					<input type="text" class="form-control" id="bisiness" ng-keyup="$event.keyCode == 13 && addTask()" ng-model="newTask" placeholder="Input...">
    			 		</div>
   			</div>
-    		<div class="panel-body" ng-controller='ListCtrl'>
+    		<div class="panel-body">
 				<ul id="todo" ng-repeat="item in items">
 					<!-- <li><input type="checkbox"><label contenteditable="true">Test</label>
 					<div class="destroy"></div>
 					</li> -->
-          <li><input type="checkbox"><label contenteditable="true">{{ item.task }}</label></li>
+          <li><input type="checkbox" ng-model="item.status"><label contenteditable="true">{{ item.task }}</label></li>
 
 				</ul>
 			</div>
